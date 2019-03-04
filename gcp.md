@@ -1,18 +1,20 @@
 # Documentation
 
-This documentation is broadly split into 3 parts:
+This documentation is broadly split into 4 parts:
 
-- Setting up kubernetes cluster
-  Prerequisite: Signup for GCP account
+- Signing up for GCP account (outside scope of this documentation)
+- Setup up kubernetes cluster
 - Setting up docker image builds
 - Deploying your apps
 
 
-### Setting up kubernetes cluster.
+## Setup up kubernetes cluster.
+
+#### Create kubernetes cluster
 
 First sign up for GCP account if you don't have one. You can do it by heading
 over to [cloud page][gcp_console]. Once signed up, create a project called
-"Dockup" and complete setting up billing.
+"dockup" and complete setting up billing.
 
 **NOTE: You will get free $300 credit when you sign up for the first time**
 
@@ -27,6 +29,92 @@ be using them later. Create page looks something like this:
 
 Cluster creation will take sometime. Please wait till cluster creation is
 complete.
+
+
+#### Connect to kubernetes cluster
+
+For instant gratification, install kubernetes and helm to get started.
+Follow these instructions:
+
+~~~sh
+# Install google cloud sdk
+> brew cask install google-cloud-sdk
+
+# Authorize yourself so that you can access projects
+> gcloud auth application-default login
+
+# See if you can get list of projects. You should see the project that
+# you have created here.
+> gcloud projects list
+
+# Set the project as context. Useful for talking to kubernetes cluster
+> gcloud config set project dockup
+
+# Get credentials for kubernetes cluster created.
+> gcloud container clusters get-credentials <name-of-cluster> \
+  --region=<region-of-cluster>
+
+# Install kubectl and ensure that you are able to list post in the
+# cluster
+> brew install kubectl
+> kubectl get pod --all-namespaces
+
+# Install helm
+> brew install kubernetes-helm
+
+# Install server component of helm, and eleveate your credentials.
+> helm init
+> kubectl create serviceaccount --namespace kube-system tiller
+> kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin \
+    --serviceaccount=kube-system:tiller
+> kubectl patch deploy --namespace kube-system tiller-deploy \
+    -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+> kubectl create clusterrolebinding <your-name>-cluster-admin-binding \
+    --clusterrole=cluster-admin --user=<your-email-used-for-gke>
+
+# You should be able to list all helm installations (none actually)
+> helm list
+~~~
+
+
+Once you have `kubectl` and `helm` installed and configured, you need to install
+traefik and dockup agent. Please have a domain ready so Dockup can deliver urls
+to your slack channel.
+
+~~~
+# Install traefik.
+> helm install \
+    --set ssl.enabled=true \
+    --set acme.enabled=true \
+    --set acme.email="<your-email"> \
+    --set acme.staging=false \
+    --set rbac.enabled=true \
+    --name=traefik \
+    stable/traefik
+
+# Get loadbalancer IP (external IP) for traefik, and update your DNS settings.
+> kubectl get service
+
+# Update DNS records:
+# type: A
+# key: *.<subdomain>.yourdomain.com
+# value: <External IP from the command above>
+
+# Install dockup agent. Dockup agent should have the ability to create
+# pods, push/pull images from registry.
+> helm repo add dockup https://helm-charts.getdockup.com
+> helm install \
+    --set agent.dockupBackend="kubernetes" \
+    --set agent.dockupApiKey="<agent-api-key-from-settings>" \
+    --set agent.dockupHost="getdockup.com" \
+    --name=dockup-agent \
+    dockup/agent
+~~~
+
+
+Once agent is installed, go to settings and ensure that agent status is
+online. This means that your agent is successfully connected and also
+ready to start deployments.
 
 
 
