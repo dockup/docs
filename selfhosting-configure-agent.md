@@ -10,4 +10,4 @@
 1. GCP: [Instructions][configure_agent_gcp]
 
 
-[setup_agent_gcp]: /selfhosting/setup-agent-gcp.md
+[configure_agent_gcp]: /selfhosting/configure-agent-gcp.md
