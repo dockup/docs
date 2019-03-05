@@ -1,13 +1,5 @@
 # GCP instructions
 
-This documentation is broadly split into 4 parts:
-
-- Create a kubernetes cluster
-- Verify connection to cluster
-- Install dockup agent
-- Configure DNS
-
-
 ### Create a kubernetes cluster
 
 First sign up for GCP account if you don't have one. You can do it by heading
