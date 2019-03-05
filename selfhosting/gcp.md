@@ -101,7 +101,7 @@ from the previous command.
 
 For example, if you own "acme.com" and you want your deployment URLs to be
 "<random_urls>.dockup.acme.com", then your base domain is dockup.acme.com and your
-DNS A record will have `key`: `*.dockup` and value: `<value of EXTERNAL-IP>`
+DNS A record will have key: `*.dockup` and value: `<value of EXTERNAL-IP>`
 
 Now you can go back to https://getdockup.com and update the base domain.
 In the above example, the value will be "dockup.acme.com". Once this is done,
