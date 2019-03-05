@@ -2,12 +2,14 @@
 
 ### Prerequisities
 
-1. GCP account.
+1. GCP or AWS account.
 2. Access to DNS records of your domain name.
 
 ### Installing agent
 
 1. GCP: [Instructions][setup_agent_gcp]
+2. AWS: [Instructions][setup_agent_aws]
 
 
 [setup_agent_gcp]: /selfhosting/setup-agent-gcp.md
+[setup_agent_aws]: /selfhosting/setup-agent-aws.md
