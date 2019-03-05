@@ -3,14 +3,14 @@
 ### Create a kubernetes cluster
 
 First sign up for GCP account if you don't have one. You can do it by heading
-over to [cloud page][gcp_console]. Once signed up, create a project called
+over to [console page][gcp_console]. Once signed up, create a project called
 "dockup" and complete setting up billing.
 
 **NOTE: You will get free $300 credit when you sign up for the first time**
 
 After you setup your GCP account, head over to [kubernetes][gcp_kubernetes]
 cluster page, enable kubernetes api, and create a cluster. It's okay to go
-with all default values. Please make a note of name, and zone as we will
+with all default values. Please make a note of the name, and zone as we will
 be using them later. Create page looks something like this:
 
 
@@ -22,8 +22,6 @@ complete.
 
 
 ### Verify connection to cluster
-
-Install kubernetes and helm to get started. Follow these instructions:
 
 ~~~sh
 # Install google cloud sdk on Mac
@@ -68,7 +66,7 @@ Install kubernetes and helm to get started. Follow these instructions:
 ### Install dockup agent
 
 Once you have `kubectl` and `helm` installed and configured, you need to install
-traefik and dockup agent. Please have a domain ready so Dockup can start using it.
+dockup agent. Please have a domain ready so Dockup can start using it.
 
 ~~~
 # Install dockup agent. Dockup agent should have the ability to create
