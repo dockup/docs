@@ -83,15 +83,11 @@ online.
 ### Configure DNS
 
 Next, you will install traefik which will be the loadbalancer for your kubernetes cluster.
-For auto-renewed letsencrypt SSL, follow these instructions before setting up traefik: [How to set up SSL][ssl_setup].
-The following command installs traefik and enables SSL (modify it as per the SSL instructions for your DNS provider):
+If you need auto-renewed Letsencrypt SSL, contact support@getdockup.com mentioning your DNS provider.
+The following command installs traefik without SSL.
 
 ~~~
 > helm install \
-    --set ssl.enabled=true \
-    --set acme.enabled=true \
-    --set acme.email="<your-email"> \
-    --set acme.staging=false \
     --set rbac.enabled=true \
     --name=traefik \
     stable/traefik
@@ -103,8 +99,8 @@ The following command installs traefik and enables SSL (modify it as per the SSL
 Add an `A` record in your DNS provider to point to the `EXTERNAL_IP` you got
 from the previous command.
 
-For example, if you own "acme.com" and you want your deployments to be running on
-"<random_url>.dockup.acme.com", then your base domain is dockup.acme.com and your
+For example, if you own "acme.com" and you want your deployment URLs to be
+"<random_urls>.dockup.acme.com", then your base domain is dockup.acme.com and your
 DNS A record will have `key`: `*.dockup` and value: `<value of EXTERNAL-IP>`
 
 Now you can go back to https://getdockup.com and update the base domain.
@@ -114,4 +110,3 @@ you are ready to start deploying!
 
 [gcp_console]: http://console.cloud.google.com/
 [gcp_kubernetes]: https://console.cloud.google.com/kubernetes/list
-[ssl_setup]: https://docs.traefik.io/v1.6/configuration/acme/#wildcard-certificates
