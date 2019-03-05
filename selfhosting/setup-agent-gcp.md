@@ -1,10 +1,11 @@
-# GCP instructions
+# GCP agent setup instructions
 
 ### Create a kubernetes cluster
 
 First sign up for GCP account if you don't have one. You can do it by heading
 over to [console page][gcp_console]. Once signed up, create a project called
-"dockup" and complete setting up billing.
+"dockup" and complete setting up billing. Note down project id of the project
+created. This id will come handy while configuring agent.
 
 **NOTE: You will get free $300 credit when you sign up for the first time**
 
@@ -106,6 +107,7 @@ DNS A record will have key: `*.dockup` and value: `<value of EXTERNAL-IP>`
 Now you can go back to https://getdockup.com and update the base domain.
 In the above example, the value will be "dockup.acme.com". Once this is done,
 you are ready to start deploying!
+
 
 
 [gcp_console]: http://console.cloud.google.com/
