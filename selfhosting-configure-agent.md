@@ -8,7 +8,7 @@
 ### Configuring agent
 
 1. GCP: [Instructions][configure_agent_gcp]
-1. AWS: [Instructions][configure_agent_aws]
+2. AWS: [Instructions][configure_agent_aws] (WIP: Contact support@getdockup.com)
 
 
 [configure_agent_gcp]: /selfhosting/configure-agent-gcp.md
