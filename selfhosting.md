@@ -5,8 +5,17 @@
 1. GCP account.
 2. Access to DNS records of your domain name.
 
-### Instructions
+### Installing agent
 
-1. GCP: [Instructions][gcp_instructions]
+1. GCP: [Instructions][setup_agent_gcp]
 
-[gcp_instructions]: /selfhosting/gcp.md
+
+
+### Configuring agent
+
+1. GCP: [Instructions][configure_agent_gcp]
+
+
+
+[setup_agent_gcp]: /selfhosting/setup-agent-gcp.md
+[configure_agent_gcp]: /selfhosting/configure-agent-gcp.md
