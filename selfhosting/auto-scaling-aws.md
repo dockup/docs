@@ -2,9 +2,8 @@
 
 Unlinke GCP, AWS EKS doesn't enable autoscaling by default. You need to install
 [autoscaler][k8s-autoscaler] specific to AWS EKS cluster. Thanks to helm, we
-can install cluster-autoscaler chart. First prepare iam roles and node groups
-as suggested in readme of [helm chart][helm-cluster-autoscaler]. Steps to
-follow:
+can install cluster-autoscaler chart. This doc outlines steps as suggested in
+the readme of [helm chart][helm-cluster-autoscaler].
 
 
 ### Update IAM role
